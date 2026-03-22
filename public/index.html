@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📹 YouTube Downloader</h1>
+            <p>Download videos, playlists, and audio from YouTube</p>
+        </header>
+
+        <main>
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="single">Single Video</button>
+                <button class="tab-btn" data-tab="playlist">Playlist</button>
+                <button class="tab-btn" data-tab="audio">Audio Only</button>
+            </div>
+
+            <!-- Single Video Tab -->
+            <div id="single" class="tab-content active">
+                <form id="singleVideoForm">
+                    <div class="form-group">
+                        <label for="videoUrl">YouTube URL:</label>
+                        <input type="text" id="videoUrl" name="url" placeholder="https://www.youtube.com/watch?v=..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="videoFormat">Format:</label>
+                        <select id="videoFormat" name="format">
+                            <option value="best">Best Quality</option>
+                            <option value="1080">1080p</option>
+                            <option value="720">720p</option>
+                            <option value="480">480p</option>
+                            <option value="360">360p</option>
+                            <option value="240">240p</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="includeSubtitles"> Include Subtitles
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Download Video</button>
+                </form>
+            </div>
+
+            <!-- Playlist Tab -->
+            <div id="playlist" class="tab-content">
+                <form id="playlistForm">
+                    <div class="form-group">
+                        <label for="playlistUrl">Playlist URL:</label>
+                        <input type="text" id="playlistUrl" name="url" placeholder="https://www.youtube.com/playlist?list=..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="playlistFormat">Format:</label>
+                        <select id="playlistFormat" name="format">
+                            <option value="best">Best Quality</option>
+                            <option value="720">720p</option>
+                            <option value="480">480p</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startIndex">Start Index (0-based):</label>
+                        <input type="number" id="startIndex" name="startIndex" min="0" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endIndex">End Index (leave blank for all):</label>
+                        <input type="number" id="endIndex" name="endIndex" min="0">
+                    </div>
+
+                    <button type="submit" class="btn-submit">Download Playlist</button>
+                </form>
+            </div>
+
+            <!-- Audio Only Tab -->
+            <div id="audio" class="tab-content">
+                <form id="audioForm">
+                    <div class="form-group">
+                        <label for="audioUrl">YouTube URL:</label>
+                        <input type="text" id="audioUrl" name="url" placeholder="https://www.youtube.com/watch?v=..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="audioFormat">Audio Format:</label>
+                        <select id="audioFormat" name="format">
+                            <option value="mp3">MP3</option>
+                            <option value="m4a">M4A</option>
+                            <option value="wav">WAV</option>
+                            <option value="opus">OPUS</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="audioBitrate">Bitrate:</label>
+                        <select id="audioBitrate" name="bitrate">
+                            <option value="128">128 kbps</option>
+                            <option value="192">192 kbps</option>
+                            <option value="256">256 kbps</option>
+                            <option value="320">320 kbps</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Download Audio</button>
+                </form>
+            </div>
+        </main>
+
+        <!-- Progress Section -->
+        <div id="progressSection" class="progress-section hidden">
+            <h3>Download Progress</h3>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <p id="progressText">0%</p>
+            </div>
+            <p id="statusText">Preparing download...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="results-section hidden">
+            <h3>Download Complete</h3>
+            <div id="resultsList" class="results-list"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
